@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Connectify</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='lobby.css'>
+</head>
+<body>
+    
+  <main id="lobby-container">
+    <div id="form-container">
+        <!-- Heading and Paragraph -->
+        <div id="connectify-info">
+            <h1>Welcome to Connectify</h1>
+            <p>Connectify is a platform where you can create or join rooms to connect with others. Whether it's for casual conversations, study groups, or collaborative projects, Connectify brings people together in a seamless and enjoyable way.</p>
+        </div>
+
+        <!-- Form to create or join a room -->
+        <div id="form__container__header">
+          <p>🤝 Create or Join a Room</p>
+        </div>
+
+        <div id="form__content__wrapper">
+            <form id="join-form">
+                <input type="text" name="invite_link" id="invite_link" required/>
+                <input type="submit" value="Join Room" />
+            </form>
+        </div>
+    </div>
+</main>
+
+</body>
+
+<script>
+    const inputField = document.getElementById('invite_link');
+    const form = document.getElementById('join-form');
+
+    // Populate input box with a randomly generated invite code by default
+    inputField.value = generateInviteCode();
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // If user entered a custom code, use that; otherwise, use the generated one
+        const inviteCode = inputField.value.trim() || generateInviteCode();
+        window.location = `index.html?room=${inviteCode}`;
+    });
+
+    function generateInviteCode() {
+        const MAX_LENGTH = 8;
+        let res = '';
+        const subset = '123456789abcdefghijklmnopqrstuvwxyz';
+        for (let i = 0; i < MAX_LENGTH; i++) {
+            res += subset[Math.floor(Math.random() * subset.length)];
+        }
+        return res;
+    }
+</script>
+
+</html>
