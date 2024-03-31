@@ -1,1 +1,1 @@
-# peer-to-peer-video-appilcation
+# Connectify (peer-to-peer-video-appilcation)
